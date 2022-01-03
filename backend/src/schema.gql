@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  email: String!
+  name: String
+  stickies: [Sticky!]
+}
+
+type Sticky {
+  id: Int!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  title: String!
+  content: String
+  published: Boolean
+  author: User
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+type Query {
+  stickyById(id: Float!): Sticky
+  feed(orderBy: StickyOrderByUpdatedAtInput, take: Float, skip: Float, searchString: String): [Sticky!]!
+  allUsers: [User!]
+  draftsByUser(userUniqueInput: UserUniqueInput!): [Sticky!]
+}
+
+input StickyOrderByUpdatedAtInput {
+  updatedAt: SortOrder!
+}
+
+enum SortOrder {
+  asc
+  desc
+}
+
+input UserUniqueInput {
+  id: Float
+  email: String
+}
+
+type Mutation {
+  createDraft(authorEmail: String!, data: StickyCreateInput!): Sticky!
+  togglePublishSticky(id: Float!): Sticky!
+  deleteSticky(id: Float!): Sticky
+  signUpUser(data: UserCreateInput!): User!
+}
+
+input StickyCreateInput {
+  title: String!
+  content: String
+}
+
+input UserCreateInput {
+  email: String!
+  name: String
+  stickies: [StickyCreateInput!]
+}
