@@ -5,9 +5,9 @@ import {
     withAuthUserTokenSSR,
     AuthAction,
 } from 'next-firebase-auth'
-import Header from '../components/Header'
-import DemoPageLinks from '../components/DemoPageLinks'
-import getAbsoluteURL from './utils/getAbsoluteURL'
+import Header from '../core/components/Header'
+import DemoPageLinks from '../core/components/DemoPageLinks'
+import getAbsoluteURL from '../pages/utils/getAbsoluteURL'
 
 const styles = {
     content: {

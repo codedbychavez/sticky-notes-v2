@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth'
-import Header from '../components/Header'
-import DemoPageLinks from '../components/DemoPageLinks'
-import FullPageLoader from '../components/FullPageLoader'
+import Header from '../core/components/Header'
+import DemoPageLinks from '../core/components/DemoPageLinks'
+import FullPageLoader from '../core/components/FullPageLoader'
 import getAbsoluteURL from './utils/getAbsoluteURL'
 
 const styles = {

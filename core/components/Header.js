@@ -1,11 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-
-const nfaDependencyVersion =
-    require('../package.json').dependencies['next-firebase-auth']
-const nextDependencyVersion = require('../package.json').dependencies.next
-const firebaseDependencyVersion =
-    require('../package.json').dependencies.firebase
+import {AppButton} from "./atoms/Button";
 
 const styles = {
     container: {
@@ -26,15 +21,10 @@ const styles = {
 
 const Header = ({ email, signOut }) => (
     <div style={styles.container}>
-        <div style={styles.versionsContainer}>
-            <div>v{nfaDependencyVersion}</div>
-            <div>Next.js v{nextDependencyVersion}</div>
-            <div>Firebase v{firebaseDependencyVersion}</div>
-        </div>
         {email ? (
             <>
                 <p>Signed in as {email}</p>
-                <button
+                <AppButton
                     type="button"
                     onClick={() => {
                         signOut()
@@ -42,7 +32,7 @@ const Header = ({ email, signOut }) => (
                     style={styles.button}
                 >
                     Sign out
-                </button>
+                </AppButton>
             </>
         ) : (
             <>
