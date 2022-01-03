@@ -5,7 +5,14 @@ import getAbsoluteURL from "./utils/getAbsoluteURL";
 import React from "react";
 import {Navigation} from "../core/components/organisms/Navigation";
 
-const MyStickies = () => {
+// Apollo client
+import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+
+const MyStickies = ({ stickies }) => {
+
+    console.log('I am here')
+    console.log(stickies)
+    console.log('I am gone')
     // The user is guarantee to be authenticated
     const AuthUser = useAuthUser()
 
@@ -26,3 +33,36 @@ export default withAuthUser({
     whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
     LoaderComponent: FullPageLoader,
 })(MyStickies)
+
+
+// This function gets called at build time
+export async function getStaticProps() {
+    const client = new ApolloClient({
+        uri: 'http://localhost:8000/graphql',
+        cache: new InMemoryCache()
+      })
+
+      const { data } = await client.query({
+          query: gql`
+          {
+            draftsByUser
+            (
+              userUniqueInput: {
+              id: 1
+            }
+            )
+            {
+              title
+            }
+          }
+          `
+      })
+  
+    // By returning { props: { posts } }, the Blog component
+    // will receive `posts` as a prop at build time
+    return {
+      props: {
+        stickies: data.draftsByUser,
+      },
+    }
+  }
