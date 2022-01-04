@@ -7,6 +7,14 @@ import {Navigation} from "../core/components/organisms/Navigation";
 
 // Apollo client
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { AppContainer } from "../core/components/molecules/Container";
+
+import { StickyControls } from "../core/components/organisms/StickyControls";
+import { StickiesList } from "../core/components/organisms/StickiesList";
+
+import { StickiesState } from "../core/mobx/StickiesState";
+
+const stickiesState = new StickiesState()
 
 const MyStickies = ({ stickies }) => {
 
@@ -19,11 +27,14 @@ const MyStickies = ({ stickies }) => {
     return (
         <div>
             <Navigation/>
-            <Header email={AuthUser.email} signOut={AuthUser.signOut} />
+            <AppContainer>
+                <Header email={AuthUser.email} signOut={AuthUser.signOut} />
+                <StickyControls stickiesState={stickiesState} />
 
-            <section>
-                Stickies will appear here.
-            </section>
+                <section>
+                    <StickiesList stickiesState={stickiesState} />
+                </section>
+            </AppContainer>
         </div>
     )
 }
