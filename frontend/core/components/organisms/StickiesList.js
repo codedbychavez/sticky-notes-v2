@@ -12,7 +12,6 @@ export const StickiesList = observer(({stickiesState}) => {
     let counter = 0;
     return (
         <div>
-            I am observing
             <Container fluid>
             <Row>
                 {stickiesState.stickiesArr.map((sticky, index) => {

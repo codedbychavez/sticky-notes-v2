@@ -13,7 +13,7 @@ export const StickyControls = ({stickiesState}) => {
     return (
         <Nav className="justify-content-left" activeKey="/home">
         <Nav.Item>
-          <AppButton onClick={handleClick}
+          <AppButton onClick={handleClick} size='sm'
             type="button"
           >Add new</AppButton>
         </Nav.Item>
