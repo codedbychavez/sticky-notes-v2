@@ -9,7 +9,6 @@ import Col from 'react-bootstrap/Col'
 
 
 export const StickiesList = observer(({stickiesState}) => {
-    let counter = 0;
     return (
         <div>
             <Container fluid>
@@ -19,7 +18,7 @@ export const StickiesList = observer(({stickiesState}) => {
                         return (
                             <>
                                 
-                                    <Sticky key={index} sticky={sticky} />
+                                    <Sticky key={index} sticky={sticky} stickiesState={stickiesState}/>
 
                             </>
                         )

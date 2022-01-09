@@ -10,8 +10,13 @@ export class StickiesState {
     }
 
     addSticky() {
-        const stickyModel = new StickyModel('Add title', 'Add Content')
+        const stickyModel = new StickyModel(0, 'Add Title', 'Add content');
         this.stickiesArr.push(stickyModel);
+    }
+
+    removeSticky(sticky) {
+        const indexOfSticky = this.stickiesArr.indexOf(sticky);
+        this.stickiesArr.splice(indexOfSticky, 1);
     }
 }
 
