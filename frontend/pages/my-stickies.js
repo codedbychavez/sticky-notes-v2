@@ -48,32 +48,13 @@ export default withAuthUser({
 
 // This function gets called at build time
 export async function getStaticProps() {
-    const client = new ApolloClient({
-        uri: 'http://localhost:8000/graphql',
-        cache: new InMemoryCache()
-      })
-
-      const { data } = await client.query({
-          query: gql`
-          {
-            draftsByUser
-            (
-              userUniqueInput: {
-              id: 1
-            }
-            )
-            {
-              title
-            }
-          }
-          `
-      })
+    
   
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
     return {
       props: {
-        stickies: data.draftsByUser,
+        stickies: '',
       },
     }
   }
