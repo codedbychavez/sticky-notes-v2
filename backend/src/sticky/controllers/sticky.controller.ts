@@ -19,17 +19,33 @@ export class StickyController {
     ) {}
 
     @Get('sticky/:id')
-    async getStickyById(@Param('id') id: string): Promise<StickyModel[]> {
+    async getStickyById(@Param('id') id: string): Promise<StickyModel> {
+        return this.stickyService.sticky({id: Number(id)})
+    }
+
+    @Get('drafts/:authorEmail')
+    async getDraftedStickies(@Param('authorEmail') authorEmail: string): Promise<StickyModel[]> {
         return this.stickyService.stickies({
-            where: { published: true }
+            // TODO: Need a similar one to get all posts for specific author/ user
+            where: { 
+                published: false,
+                author: {
+                    email: authorEmail,
+                }
+             }
         })
     }
 
-    @Get('feed')
-    async getPublishedStickies(): Promise<StickyModel[]> {
+    @Get('published/:authorEmail')
+    async getPublishedStickies(@Param('authorEmail') authorEmail: string): Promise<StickyModel[]> {
         return this.stickyService.stickies({
             // TODO: Need a similar one to get all posts for specific author/ user
-            where: { published: true }
+            where: { 
+                published: true,
+                author: {
+                    email: authorEmail,
+                }
+             }
         })
     }
 
@@ -40,12 +56,12 @@ export class StickyController {
         return this.stickyService.stickies({
             where: {
                 OR: [
-                    {
-                        title: { contains: searchString },
-                    },
-                    {
-                        content: { contains: searchString },
-                    },
+                        {
+                            title: { contains: searchString },
+                        },
+                        {
+                            content: { contains: searchString },
+                        },
                 ],
             },
         });

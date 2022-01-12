@@ -49,6 +49,7 @@ export default withAuthUser({
 // This function gets called at build time
 export async function getStaticProps() {
     
+    
   
     // By returning { props: { posts } }, the Blog component
     // will receive `posts` as a prop at build time
