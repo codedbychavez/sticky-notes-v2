@@ -71,6 +71,8 @@ export class StickyController {
     async createDraft(
         @Body() postData: { title: string; content?: string; authorEmail: string },
     ): Promise<StickyModel> {
+        console.log('This is the post data')
+        console.log(postData)
         const { title, content, authorEmail } = postData;
         return this.stickyService.createSticky({
             title,

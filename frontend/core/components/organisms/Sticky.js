@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 import { DeleteIcon } from '../svgs/DeleteIcon'
 import { CheckCircleIcon } from '../svgs/CheckCircleIcon'
 import { CloudArrowUpIcon } from '../svgs/CloudArrowUpIcon'
+import { StickyService } from '../../services/StickyService'
 
 export const Sticky = ({sticky, stickiesState}) => {
 
@@ -49,6 +50,7 @@ export const Sticky = ({sticky, stickiesState}) => {
         const stickyFormData = {
             title: titleInput,
             content: contentInput,
+            authorEmail: "brad@gmail.com"
         }
 
  
@@ -56,6 +58,20 @@ export const Sticky = ({sticky, stickiesState}) => {
         stickyFormData.content ? activeSticky.content = stickyFormData.content : stickyFormData.content;
 
         // TODO: Call api to add sticky
+        StickyService.addSticky(stickyFormData).then(async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson && await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+        })
+        .catch(error => {
+            console.error('There was an error!', error);
+        });
 
     }
     
