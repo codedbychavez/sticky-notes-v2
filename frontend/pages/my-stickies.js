@@ -6,7 +6,6 @@ import React from "react";
 import {Navigation} from "../core/components/organisms/Navigation";
 
 // Apollo client
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 import { AppContainer } from "../core/components/molecules/Container";
 
 import { StickyControls } from "../core/components/organisms/StickyControls";

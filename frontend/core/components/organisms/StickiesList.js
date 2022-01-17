@@ -16,11 +16,10 @@ export const StickiesList = observer(({stickiesState}) => {
                 {stickiesState.stickiesArr.map((sticky, index) => {
                    
                         return (
-                            <>
+        
                                 
-                                    <Sticky key={index} sticky={sticky} stickiesState={stickiesState}/>
+                                    <Sticky key={sticky.title} sticky={sticky} stickiesState={stickiesState}/>
 
-                            </>
                         )
 
                 })}

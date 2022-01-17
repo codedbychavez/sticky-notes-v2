@@ -37,7 +37,7 @@ export const Sticky = ({sticky, stickiesState}) => {
     }
 
     const handleRemoveSticky = () => {
-        console.log(stickiesState.removeSticky(activeSticky));
+        stickiesState.removeSticky(activeSticky);
 
         // TODO: Call api to remove sticky
     }
